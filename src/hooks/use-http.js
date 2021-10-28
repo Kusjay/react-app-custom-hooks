@@ -8,13 +8,9 @@ const useHttp = () => {
 		setIsLoading(true);
 		setError(null);
 		try {
-			// const response = await fetch(
-			// 	'https://react-http-da9af-default-rtdb.firebaseio.com/tasks.json'
-			// );
-
 			const response = await fetch(requestConfig.url, {
 				method: requestConfig.method ? requestConfig.method : 'GET',
-				headers: requestConfig.headers ? requestConfig.method : {},
+				headers: requestConfig.headers ? requestConfig.headers : {},
 				body: requestConfig.body ? JSON.stringify(requestConfig.body) : null
 			});
 
@@ -23,14 +19,6 @@ const useHttp = () => {
 			}
 
 			const data = await response.json();
-
-			// const loadedTasks = [];
-
-			// for (const taskKey in data) {
-			// 	loadedTasks.push({ id: taskKey, text: data[taskKey].text });
-			// }
-
-			// setTasks(loadedTasks);
 
 			applyData(data);
 		} catch (err) {
